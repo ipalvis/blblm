@@ -35,10 +35,10 @@ lm_each_boot <- function(formula, data, n) {
 }
 
 
-#' estimate the regression estimates based on given the number of repetitions
+#' estimate the regression estimates based on given number of repetitions
 lm1 <- function(formula, data, freqs) {
   # drop the original closure of formula,
-  # otherwise the formula will pick a wront variable from the global scope.
+  # otherwise the formula will pick wrong variables from a parent scope.
   environment(formula) <- environment()
   fit <- lm(formula, data, weights = freqs)
   list(coef = blbcoef(fit), sigma = blbsigma(fit, freqs))

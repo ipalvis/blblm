@@ -8,7 +8,10 @@
 #' @export
 blblm <- function(formula, data, m = 10, B = 5000) {
   data_list <- split_data(data, m)
-  estimates <- map(data_list, ~lm_each_subsample(formula = formula, data = ., n = nrow(data), B = B))
+  estimates <- map(
+    data_list,
+    ~ lm_each_subsample(formula = formula, data = ., n = nrow(data), B = B)
+  )
   res <- list(estimates = estimates, formula = formula)
   class(res) <- "blblm"
   invisible(res)
@@ -93,9 +96,9 @@ confint.blblm <- function(object, parm = NULL, level = 0.95, ...) {
 
 #' @export
 #' @method predict blblm
-predict.blblm <- function(object, new_data, confidence = FALSE, level = 0.95,...) {
+predict.blblm <- function(object, newdata, confidence = FALSE, level = 0.95, ...) {
   est <- object$estimates
-  X <- model.matrix(reformulate(attr(terms(object$formula), "term.labels")), new_data)
+  X <- model.matrix(reformulate(attr(terms(object$formula), "term.labels")), newdata)
   if (confidence) {
     # YOUR CODE to compute the predictions and their confidence intervals
   } else {

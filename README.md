@@ -10,7 +10,7 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 > library(blblm)
-> fit <- blblm(mpg ~ wt * hp, m = 3, data = mtcars, B = 100)
+> fit <- blblm(mpg ~ wt * hp, data = mtcars, m = 3, B = 100)
 > coef(fit)
  (Intercept)           wt           hp        wt:hp 
  56.82338917 -10.54673065  -0.16372116   0.04191719 

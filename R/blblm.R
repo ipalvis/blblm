@@ -44,7 +44,7 @@ lm1 <- function(formula, data, freqs) {
   # otherwise the formula will pick wrong variables from a parent scope.
   environment(formula) <- environment()
   fit <- lm(formula, data, weights = freqs)
-  list(coef = blbcoef(fit), sigma = blbsigma(fit, freqs))
+  list(coef = blbcoef(fit, freqs), sigma = blbsigma(fit, freqs))
 }
 
 

@@ -44,21 +44,22 @@ lm1 <- function(formula, data, freqs) {
   # otherwise the formula will pick wrong variables from a parent scope.
   environment(formula) <- environment()
   fit <- lm(formula, data, weights = freqs)
-  list(coef = blbcoef(fit, freqs), sigma = blbsigma(fit, freqs))
+  list(coef = blbcoef(fit), sigma = blbsigma(fit))
 }
 
 
 #' compute the coefficients from fit
-blbcoef <- function(fit, freqs) {
+blbcoef <- function(fit) {
   # YOUR CODE to compute the coefficients
 }
 
 
 #' compute sigma from fit
-blbsigma <- function(fit, freqs) {
+blbsigma <- function(fit) {
   p <- fit$rank
   y <- model.extract(fit$model, "response")
   e <- fitted(fit) - y
+  w <- fit$weights
   # YOUR CODE to compute sigma
 }
 
